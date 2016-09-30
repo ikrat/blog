@@ -25,12 +25,12 @@
 	<div id="templatemo_menu_panel">
 		<div id="templatemo_menu_section">
 			<ul>
-				<li><a href="index.html" class="current">Home</a></li>
+				<li><a href="/news" class="current">Home</a></li>
 				<li><a href="#">Gallery</a></li>
 				<li><a href="#">Categories</a></li>
 				<li><a href="#">Archives</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Contact</a></li>
+				<li><a href="/about">About</a></li>
+				<li><a href="/contact">Contact</a></li>
 			</ul>
 		</div>
 	</div>
@@ -48,9 +48,9 @@
 				<div class="templatemo_right_section">
 					<div class="tag_section">
 						<ul id="countrytabs" class="shadetabs">
-							<li><a href="#" rel="search" class="selected">Search</a></li>
-							<li><a href="#" rel="category">Category</a></li>
-							<li><a href="#" rel="archive">Archive</a></li>
+							<li><a href="/search" rel="search" class="selected">Search</a></li>
+							<li><a href="/seatch" rel="category">Category</a></li>
+							<li><a href="/search" rel="archive">Archive</a></li>
 						</ul>
 					</div>
 
@@ -127,14 +127,6 @@
 					</ul>
 				</div>
 
-				<div class="templatemo_right_section">
-					<h2>Search</h2>
-					<form method="get" action="#">
-						<input class="inputfield" name="keyword" type="text" id="keyword" />
-						<input type="submit" name="submit" class="button" value="Search" />
-					</form>
-				</div>
-
 			</div>
 			<!-- end of right content -->
 		</div>
@@ -160,8 +152,8 @@
 				<ul>
 					<li><a href="#">Terms</a></li>
 					<li><a href="#">Privacy</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/contact">Contact</a></li>
 				</ul>
 			</div>
 
