@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <div id="templatemo_content_right">
 
@@ -6,8 +8,6 @@
 		<div class="tag_section">
 			<ul id="countrytabs" class="shadetabs">
 				<li><a href="/search" rel="search" class="selected">Search</a></li>
-				<li><a href="/seatch" rel="category">Category</a></li>
-				<li><a href="/search" rel="archive">Archive</a></li>
 			</ul>
 		</div>
 
@@ -17,26 +17,6 @@
 					<input class="inputfield" name="searchkeyword" type="text" id="searchkeyword" /> <input type="submit" name="submit" class="button"
 						value="Search" />
 				</form>
-			</div>
-
-			<div id="category" class="tabcontent">
-				<ul>
-					<li><a href="#">Lorem ipsum</a></li>
-					<li><a href="#">Duis mollis</a></li>
-					<li><a href="#">Maecenas adipiscing</a></li>
-					<li><a href="#">Nunc blandit orci</a></li>
-					<li><a href="#">Cum sociis natoque</a></li>
-				</ul>
-			</div>
-
-			<div id="archive" class="tabcontent">
-				<ul>
-					<li><a href="#">January 2009</a></li>
-					<li><a href="#">December 2008</a></li>
-					<li><a href="#">November 2008</a></li>
-					<li><a href="#">October 2008</a></li>
-					<li><a href="#">September 2008</a></li>
-				</ul>
 			</div>
 		</div>
 
@@ -51,14 +31,13 @@
 
 
 	<div class="templatemo_right_section">
-		<h2>Popular Posts</h2>
-		<ul>
-			<li><a href="#">Quisque dictum pharetra neque</a></li>
-			<li><a href="#">Aliquam pretium porta odio</a></li>
-			<li><a href="#">Maecenas adipiscing</a></li>
-			<li><a href="#">Vivamus vestibulum condimentum</a></li>
-			<li><a href="#">Cum sociis natoque</a></li>
-		</ul>
+		<h2>Categories</h2>
+		<c:forEach var="categoryEntry" items="${CATEGORY_MAP }">
+			<c:set var="cat" value="${categoryEntry.value }" />
+			<ul>
+				<li class="item"><a href="/news${cat.url }">${cat.name } <span>(${cat.articles })</span></a></li>
+			</ul>
+		</c:forEach>
 	</div>
 
 	<div class="templatemo_right_section">
