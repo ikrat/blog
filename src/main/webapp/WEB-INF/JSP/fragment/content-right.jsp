@@ -7,15 +7,15 @@
 	<div class="templatemo_right_section">
 		<div class="tag_section">
 			<ul id="countrytabs" class="shadetabs">
-				<li><a href="/search" rel="search" class="selected">Search</a></li>
+				<li><a href="#" rel="search" class="selected">Search</a></li>
 			</ul>
 		</div>
 
 		<div class="tabcontent_section">
 			<div id="search" class="tabcontent">
-				<form method="get" action="#">
-					<input class="inputfield" name="searchkeyword" type="text" id="searchkeyword" /> <input type="submit" name="submit" class="button"
-						value="Search" />
+				<form method="get" action="/search">
+					<input class="inputfield" name="query" type="text" placeholder="Search query" id="search" value="${searchQuery }" /> 
+					<input type="submit" class="button" value="Search" />
 				</form>
 			</div>
 		</div>
