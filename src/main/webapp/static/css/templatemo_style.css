@@ -219,6 +219,7 @@ form{
 
 .templatemo_post .post_body img{
 	margin-bottom: 15px;
+	width: 100%;
 }
 
 .templatemo_post .post_comment{

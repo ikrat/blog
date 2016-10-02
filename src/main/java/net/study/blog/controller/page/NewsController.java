@@ -7,7 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.study.blog.Constants;
 import net.study.blog.controller.AbstractController;
+import net.study.blog.entity.Article;
+import net.study.blog.model.Items;
+
 
 @WebServlet({"/news", "/news/*"})
 public class NewsController extends AbstractController {
@@ -15,6 +19,14 @@ public class NewsController extends AbstractController {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String requestUrl = req.getRequestURI();
+		Items<Article> items = null;
+		if(requestUrl.endsWith("/news") || requestUrl.endsWith("/news/")){
+			items = getBusinessService().listArticles(0, Constants.LIMIT_ARTICLES_PER_PAGE);
+		} else {
+			//TODO
+		}
+		req.setAttribute("list", items.getItems());
 		forwardToPage("news.jsp", req, resp);
 	}
 }
