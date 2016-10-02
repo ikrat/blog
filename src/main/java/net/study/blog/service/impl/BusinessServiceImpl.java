@@ -16,25 +16,22 @@ import net.study.blog.service.BusinessService;
 class BusinessServiceImpl implements BusinessService {
 	private final DataSource dataSource;
 	private final SQLDAO sql;
-	
+
 	BusinessServiceImpl(ServiceManager serviceManager) {
 		super();
 		this.dataSource = serviceManager.dataSource;
 		this.sql = new SQLDAO();
 	}
 
-
-
 	@Override
 	public Map<Integer, Category> mapCategories() {
-		try (Connection c = dataSource.getConnection()){
+		try (Connection c = dataSource.getConnection()) {
 			return sql.mapCategories(c);
 		} catch (SQLException e) {
 			throw new ApplicationException("Can`t execute db command: " + e.getMessage(), e);
 		}
 	}
 
-	
 	@Override
 	public Items<Article> listArticles(int offset, int limit) {
 		try (Connection c = dataSource.getConnection()) {
@@ -43,7 +40,28 @@ class BusinessServiceImpl implements BusinessService {
 			items.setCount(sql.countArticles(c));
 			return items;
 		} catch (SQLException e) {
-			throw new ApplicationException("Can`t execute db command: "+e.getMessage(), e);
+			throw new ApplicationException("Can`t execute db command1: " + e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public Items<Article> listArticlesByCategory(String categoryUrl, int offset, int limit) {
+		try (Connection c = dataSource.getConnection()) {
+			Items<Article> items = new Items<>();
+			items.setItems(sql.listArticlesByCategory(c, categoryUrl, offset, limit));
+			items.setCount(sql.countArticlesByCategory(c, categoryUrl));
+			return items;
+		} catch (SQLException e) {
+			throw new ApplicationException("Can`t execute db command2: " + e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public Category findCategoryByUrl(String categoryUrl) {
+		try(Connection c = dataSource.getConnection()) {
+			return sql.findCategoryByUrl(c, categoryUrl);
+		} catch (SQLException e) {
+			throw new ApplicationException("Can`t execute db command: " + e.getMessage(), e);
 		}
 	}
 }

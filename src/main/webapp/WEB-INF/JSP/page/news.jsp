@@ -12,7 +12,7 @@
 			</div>
 			<div class="post_info">
 				<i class="fi-folder"></i><a href="/news${category.url }">${category.name }</a>
-				 <i class="fi-comments"></i> <fmt:formatNumber value="${article.comments }" />comments 
+				<i class="fi-comments"></i> <fmt:formatNumber value="${article.comments }" />comments 
 				<i class="fi-clock"></i><fmt:formatDate value="${article.created }" dateStyle="FULL" timeStyle="SHORT" type="both" />
 				<i class="fi-eye"></i>Hits:<fmt:formatNumber value="${article.views }" />
 			</div>
