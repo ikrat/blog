@@ -139,4 +139,86 @@ display:block !important;
   display: inline-block;
   margin-left: 0.5rem; }
 
-  
+  .comments img.avatar {
+	border-radius: 5px;
+	width: 80px;
+	height: 80px; 
+}
+
+.comments small {
+	color: gray;
+}
+
+.comments .media-object-section p {
+	margin: 0;
+}
+
+.comments .media-object-section p.meta {
+	margin-top: 5px;
+}
+
+.comments .media-object-section .name {
+	color: #292c2f;
+	font-weight: 500;
+}
+
+.comments .media-object {
+	border-top: 1px solid gray;
+	padding-top: 1em;
+}
+
+.load-indicator {
+	display: none;
+}
+
+.article img.loading-indicator {
+	width: 3em;
+	height: 3em;
+	min-width: 0px;
+	min-height: 0px;
+	margin:0 auto;
+	display: none;
+}
+
+.new-comment .logout {
+	width: 100%;
+	text-align: center;
+	display: none;
+}
+
+.new-comment .media-object-section textarea {
+	height:120px;
+	margin:0;
+}
+
+.categories .menu li.selected, 
+.categories .menu li:hover {
+	background: #2f4f4f;
+}
+
+.categories .menu li.selected a, 
+.categories .menu li:hover a {
+	color:white;
+}
+
+.categories .menu li.selected a span, 
+.categories .menu li:hover a span{
+	color:white;
+	font-size: 1em;
+}
+
+.categories .menu li a {
+	color: black;
+	display: block;
+	padding: 0.8rem 0.625rem 0.8rem;
+}
+
+.categories .menu li a span {
+	font-size: 0.8em;
+	color: gray;
+	padding-left: 5px;
+}
+
+.categories > li {
+	padding: 0;
+}
