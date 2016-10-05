@@ -29,12 +29,11 @@
 		<%-- ----------------------------------------- Comments section ----------------------------------------- --%>
 		<div class="comments">
 			<jsp:include page="../fragment/new-comment.jsp" />
-			<div id="comments-list-container" data-comments-count="${article.comments }" data-id-article="${article.id }">
+			<div id="comments-list-container">
 				<jsp:include page="../fragment/comments.jsp" />				
 			</div>
-			<div id="comments-load-more-ctrl" class="row column text-center">
-				<a href="javascript:moreComments();" class="button hollow expanded load-more-btn" 
-						${article.comments >  fn:length(comments) ? '' : 'style="display:none"' }>Load More</a>
-				<img src="/static/img/loading.gif" alt="Loading..." class="loading-indicator" />
+			<div id="comments-load-more-ctrl" class="templatemo_post_wrapper">
+				<a class="button hollow expanded load-more-btn" ${article.comments> fn:length(comments) ? '' : 'style="display:none"' }>
+				Load more</a>
 			</div>
 		</div>
