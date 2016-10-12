@@ -1,8 +1,3 @@
-/**
- * 
- * @author devstudy
- * @see http://devstudy.net
- */
 $(document).foundation();
 $(document).ready(function(){
 	$('#mobile-category-menu ul.menu').removeAttr('style');
@@ -32,6 +27,7 @@ function moreComments() {
 	});
 }
 
+// --------------------------Google plus----------------------
 var googleProfile = null;
 
 function submitComment() {
