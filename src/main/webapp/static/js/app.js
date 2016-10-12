@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author devstudy
+ * @see http://devstudy.net
+ */
 $(document).foundation();
 $(document).ready(function(){
 	$('#mobile-category-menu ul.menu').removeAttr('style');
@@ -25,4 +30,77 @@ function moreComments() {
 			alert(messages.errorAjax);
 		}
 	});
+}
+
+var googleProfile = null;
+
+function submitComment() {
+	if (googleProfile == null) {
+		$('#sigin-form').foundation('open');
+	} else {
+		var authToken = googleProfile.authToken;
+		var idArticle = $('#comments-list-container').attr('data-id-article');
+		var content = $('#new-comment-container textarea').val();
+		if (content.trim() != '') {
+			$('#comment-content').parent().find('.form-error').css('display', 'none');
+			$('#new-comment-container textarea').val('');
+			$('#new-comment-loading img').css('display', 'block');
+			$.ajax({
+				url : '/ajax/comment',
+				method : 'post',
+				data : {
+					idArticle : idArticle,
+					authToken : authToken,
+					content : content
+				},
+				success : function(data) {
+					$('#new-comment-loading img').css('display', 'none');
+					$('#comments-list-container').prepend(data);
+				},
+				error : function(data) {
+					alert(messages.errorAjax);
+					$('#new-comment-loading img').css('display', 'none');
+				}
+			});
+		}
+		else{
+			$('#comment-content').parent().find('.form-error').css('display', 'inline');
+			$('#new-comment-container textarea').val('');
+		}
+	}
+}
+
+function onSignIn(googleUser) {
+	googleProfile = googleUser.getBasicProfile();
+	googleProfile.authToken = googleUser.getAuthResponse().id_token;
+	$('#sigin-form').foundation('close');
+	if (googleProfile.getImageUrl() != null) {
+		$('#new-comment-container img').attr('src', googleProfile.getImageUrl());
+	}
+	$('#new-comment-container img').attr('alt', googleProfile.getName());
+	$('#new-comment-container a.logout').css('display', 'block');
+}
+
+function gpLogout() {
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut();
+	googleProfile = null;
+	$('#new-comment-container a.logout').css('display', 'none');
+	$('#new-comment-container img').attr('src', '/static/img/no_avatar.png');
+	$('#new-comment-container img').attr('alt', messages.anonym);
+}
+
+function reply(name) {
+	$('#new-comment-container textarea').val(name + ', ');
+	$('#new-comment-container textarea').focus();
+	$('html, body').animate({
+		scrollTop : $('#new-comment-container textarea').offset().top
+	}, 2000);
+}
+
+function gotoSearch() {
+	$('html, body').animate({
+		scrollTop : $('#search').offset().top
+	}, 2000);
+	$('#search').focus();
 }

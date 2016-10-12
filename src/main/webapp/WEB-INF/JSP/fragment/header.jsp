@@ -1,21 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<div id="templatemo_header_panel">
-	<div id="templatemo_title_section">
-		<h1>OLD BLOG</h1>
-		Your tagline goes here
-	</div>
-</div>
-
-<div id="templatemo_menu_panel">
-	<div id="templatemo_menu_section">
-		<ul>
-			<li><a href="/news" class="current">Home</a></li>
-			<li><a href="#">Gallery</a></li>
-			<li><a href="#">Categories</a></li>
-			<li><a href="#">Archives</a></li>
-			<li><a href="/about">About</a></li>
-			<li><a href="/contact">Contact</a></li>
-		</ul>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<div class="callout primary" style="margin: 0;">
+	<div class="row">
+		<div class="large-6 medium-6 columns">
+			<h1>Blog Demo</h1>
+		</div>
+		<div class="large-6 medium-6 columns">
+			<form action="/search" method="get">
+				<div class="input-group" style="margin-top: 1em;">
+					<input id="search" class="input-group-field" name="query" placeholder="Search query" type="text" value="${searchQuery }">
+					<div class="input-group-button">
+						<input class="button" value="Find" type="submit">
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>

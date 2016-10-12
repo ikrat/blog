@@ -24,7 +24,8 @@ public abstract class AbstractEntity<PK> extends AbstractModel implements Serial
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -33,7 +34,7 @@ public abstract class AbstractEntity<PK> extends AbstractModel implements Serial
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractEntity other = (AbstractEntity) obj;
+		AbstractEntity <PK> other = (AbstractEntity<PK>) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
