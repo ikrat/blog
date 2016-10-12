@@ -8,9 +8,6 @@
 <meta name="description" content="" />
 <link href="/static/css/templatemo_style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="/static/css/tabcontent.css" />
-<script type="text/javascript" src="/static/js/tabcontent.js">
-	
-</script>
 </head>
 <body>
 
@@ -35,5 +32,9 @@
 	<footer>
 		<jsp:include page="fragment/footer.jsp" />
 	</footer>
+	
+<script src="/static/js/app.js"></script>
+<script src="/static/js/messages.jsp"></script>	
+<script src="/static/js/tabcontent.js"></script>
 </body>
 </html>
