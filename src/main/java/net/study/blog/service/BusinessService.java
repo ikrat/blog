@@ -7,6 +7,7 @@ import net.study.blog.entity.Article;
 import net.study.blog.entity.Category;
 import net.study.blog.entity.Comment;
 import net.study.blog.exception.RedirectToValidUrlException;
+import net.study.blog.exception.ValidateException;
 import net.study.blog.form.CommentForm;
 import net.study.blog.model.Items;
 
@@ -34,5 +35,5 @@ public interface BusinessService {
 	
 	List<Comment> listComments(long idArticle, int offset, int limit);
 	
-	Comment createComment (CommentForm form);
+	Comment createComment (CommentForm form) throws ValidateException;
 }

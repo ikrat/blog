@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import net.study.blog.service.AvatarService;
 import net.study.blog.service.BusinessService;
+import net.study.blog.service.I18nService;
 import net.study.blog.service.SocialService;
 import net.study.blog.util.AppUtil;
 
@@ -50,6 +51,7 @@ public class ServiceManager {
 	final BasicDataSource dataSource;
 	final SocialService socialService;
 	final AvatarService avatarService;
+	final I18nService i18nService;
 	final BusinessService businessService;
 	private ServiceManager(ServletContext context) {
 		applicationContext = context;
@@ -57,6 +59,7 @@ public class ServiceManager {
 		dataSource = createBasicDataSource();
 		socialService = new GooglePlusSocialService(this);
 		avatarService = new FileStorageAvatarService(this);
+		i18nService = new I18nServiceImpl();
 		businessService = new BusinessServiceImpl(this);
 		LOGGER.info("ServiceManager instance created");
 	}
