@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -25,6 +26,7 @@ import net.study.blog.model.SocialAccount;
 import net.study.blog.service.AvatarService;
 import net.study.blog.service.BusinessService;
 import net.study.blog.service.I18nService;
+import net.study.blog.service.NotificationService;
 import net.study.blog.service.SocialService;
 
 class BusinessServiceImpl implements BusinessService {
@@ -34,6 +36,8 @@ class BusinessServiceImpl implements BusinessService {
 	private final SocialService socialService;
 	private final AvatarService avatarService;
 	private final I18nService i18nService;
+	private final NotificationService notificationService;
+	private final String appHost;
 
 	BusinessServiceImpl(ServiceManager serviceManager) {
 		super();
@@ -41,6 +45,8 @@ class BusinessServiceImpl implements BusinessService {
 		this.socialService = serviceManager.socialService;
 		this.avatarService = serviceManager.avatarService;
 		this.i18nService = serviceManager.i18nService;
+		this.notificationService = serviceManager.notificationService;
+		this.appHost = serviceManager.getApplicationProperty("app.host");
 		this.sql = new SQLDAO();
 	}
 
@@ -61,7 +67,7 @@ class BusinessServiceImpl implements BusinessService {
 			items.setCount(sql.countArticles(c));
 			return items;
 		} catch (SQLException e) {
-			throw new ApplicationException("Can`t execute db command1: " + e.getMessage(), e);
+			throw new ApplicationException("Can`t execute db command: " + e.getMessage(), e);
 		}
 	}
 
@@ -73,7 +79,7 @@ class BusinessServiceImpl implements BusinessService {
 			items.setCount(sql.countArticlesByCategory(c, categoryUrl));
 			return items;
 		} catch (SQLException e) {
-			throw new ApplicationException("Can`t execute db command2: " + e.getMessage(), e);
+			throw new ApplicationException("Can`t execute db command: " + e.getMessage(), e);
 		}
 	}
 
@@ -127,6 +133,13 @@ class BusinessServiceImpl implements BusinessService {
 		}
 	}
 	
+	protected void sendNewCommentNotification(Article article, String commentContent, Locale locale) {
+		String fullLink = appHost + article.getArticleLink();
+		String title = i18nService.getMessage("notification.newComment.title", locale, article.getTitle());
+		String content = i18nService.getMessage("notification.newComment.content", locale, article.getTitle(), fullLink, commentContent);
+		notificationService.sendNotification(title, content);
+	}
+	
 	@Override
 	public Comment createComment(CommentForm form) throws ValidateException {
 		form.validate(i18nService);
@@ -145,7 +158,7 @@ class BusinessServiceImpl implements BusinessService {
 			sql.updateArticleComments(c, article);
 			c.commit();
 			//after commit
-			//TODO Send new comment notification
+			sendNewCommentNotification(article, form.getContent(), form.getLocale());
 			return comment;
 		} catch (SQLException | RuntimeException | IOException e) {
 			if(avatarService.deleteAvatarIfExists(newAvatarPath)){

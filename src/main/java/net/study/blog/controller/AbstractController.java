@@ -12,6 +12,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.study.blog.form.AbstractForm;
 import net.study.blog.service.BusinessService;
 import net.study.blog.service.impl.ServiceManager;
 
@@ -46,9 +47,10 @@ public abstract class AbstractController extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/JSP/fragment/"+jspPage).forward(req, resp);
 	}
 	
-	public final <T> T createForm(HttpServletRequest req, Class<T> formClass) throws ServletException {
+	public final <T extends AbstractForm> T createForm(HttpServletRequest req, Class<T> formClass) throws ServletException {
 		try {
 			T form = formClass.newInstance();
+			form.setLocale(req.getLocale());
 			BeanUtils.populate(form, req.getParameterMap());
 			return form;
 		} catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
