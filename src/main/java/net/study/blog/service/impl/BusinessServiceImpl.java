@@ -21,6 +21,7 @@ import net.study.blog.exception.ApplicationException;
 import net.study.blog.exception.RedirectToValidUrlException;
 import net.study.blog.exception.ValidateException;
 import net.study.blog.form.CommentForm;
+import net.study.blog.form.ContactForm;
 import net.study.blog.model.Items;
 import net.study.blog.model.SocialAccount;
 import net.study.blog.service.AvatarService;
@@ -110,8 +111,7 @@ class BusinessServiceImpl implements BusinessService {
 			Article article = sql.findArticleById(c, idArticle);
 			if (article == null) {
 				return null;
-			}
-			if(!article.getArticleLink().equals(requestUrl)) {
+			}else if(!article.getArticleLink().equals(requestUrl)) {
 				throw new RedirectToValidUrlException(article.getArticleLink());
 			} else {
 				article.setViews(article.getViews()+1);
@@ -166,5 +166,12 @@ class BusinessServiceImpl implements BusinessService {
 			}
 			throw new ApplicationException("Can`t create new comment: "+e.getMessage(), e);
 		}
+	}
+	
+	public void createContactRequest(ContactForm form) throws ValidateException {
+		form.validate(i18nService);
+		String title = i18nService.getMessage("notification.contact.title", form.getLocale());
+		String content = i18nService.getMessage("notification.contact.content", form.getLocale(), form.getName(), form.getEmail(), form.getText());
+		notificationService.sendNotification(title, content);
 	}
 }

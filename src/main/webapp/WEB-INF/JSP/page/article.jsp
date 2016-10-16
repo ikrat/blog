@@ -4,8 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56ead5c8152fa0ff"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools --> 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58038d6a65c612a5"></script>
 
 <div class="article thumbnail">
 	<c:set var="category" value="${CATEGORY_MAP[article.idCategory] }" />
@@ -24,9 +24,8 @@
 		<hr />
 		<div class="content">${article.content }</div>
 		<%-- ----------------------------------------- Social buttons ----------------------------------------- --%>
-		<div class="row columns social">
-			<div class="addthis_sharing_toolbox"></div>
-		</div>
+		<!-- Go to www.addthis.com/dashboard to customize your tools --> 
+		<div class="addthis_inline_share_toolbox"></div>
 		<br>
 		<%-- ----------------------------------------- Comments section ----------------------------------------- --%>
 		<div class="comments">
