@@ -32,13 +32,13 @@ import net.study.blog.service.SocialService;
 
 class BusinessServiceImpl implements BusinessService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BusinessServiceImpl.class);
-	private final DataSource dataSource;
-	private final SQLDAO sql;
-	private final SocialService socialService;
-	private final AvatarService avatarService;
-	private final I18nService i18nService;
-	private final NotificationService notificationService;
-	private final String appHost;
+	protected final DataSource dataSource;
+	protected final SQLDAO sql;
+	protected final SocialService socialService;
+	protected final AvatarService avatarService;
+	protected final I18nService i18nService;
+	protected final NotificationService notificationService;
+	protected final String appHost;
 
 	BusinessServiceImpl(ServiceManager serviceManager) {
 		super();

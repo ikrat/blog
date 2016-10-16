@@ -14,13 +14,14 @@
 	</div>
 	<div class="small-12 medium-6 large-4 columns">
 		<ul class="contact">
-			<li><p><i class="fi-html5"></i><a href="#">http</a></p></li>
-			
+			<li><p><i class="fi-html5"></i>Site</p></li>
+			<li><p><i class="fi-mail"></i>E-mail</p></li>
 		</ul>
 	</div>
 	<div class="small-12 medium-12 large-3 columns">
 		<p class="about">Blog Demo</p>
-		
+		<p class="about subheader">This is demo for blog web application. 
+		This web application is written using Servlets, JSP, JSTL, JDBC, HTML5, Foundation and jQuery.</p>
 		
 	</div>
 </div>
